@@ -1,10 +1,10 @@
-var express = require('express')
-var cors = require('cors')
+const express = require('express')
+const app = express()
+const cors = require("cors")
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Razorpay = require("razorpay");
-var CryptoJS = require("crypto-js");
-var app = express()
+
 
 
 const secret = "abcfghk79685";
@@ -14,8 +14,10 @@ const mongoClient = mongodb.MongoClient;
 require('dotenv').config({ path: './secure.env' })
 const URL = process.env.URL;
 
-app.use(cors())
-
+let options = {
+    origin:"*"
+}
+app.use(cors(options))
 
 let authenticate = function(req,res,next){
    
