@@ -15,7 +15,8 @@ require('dotenv').config({ path: './secure.env' })
 const URL = process.env.URL;
 
 let options = {
-    origin:"*"
+    origin:"*",
+    credentials: true,
 }
 app.use(cors(options))
 
