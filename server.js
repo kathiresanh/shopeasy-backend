@@ -231,24 +231,28 @@ app.get("/getordersdata/:email",async function(req,res){
 
 app.post("/createorder",async function(req,res){
 
-    var instance = new Razorpay({
-        key_id: process.env.key_id,
-        key_secret: process.env.key_secret,
-      });
-     
     
-    var options = {
-        amount: parseInt(req.body.price)*100,  // amount in the smallest currency unit
-        currency: "INR",
-        receipt: "order_rcptid_11"
-      };
-     
-      instance.orders.create(options,function(err, order) {
-        
-          res.send(order)
-          res.send(err)
-      
-      });
+    try {
+        var instance = new Razorpay({
+            key_id: process.env.key_id,
+            key_secret: process.env.key_secret,
+        });
+
+
+        var options = {
+            amount: parseInt(req.body.price) * 100,  // amount in the smallest currency unit
+            currency: "INR",
+            receipt: "order_rcptid_11"
+        };
+
+        instance.orders.create(options, function (err, order) {
+
+            res.send(order)
+
+        });
+    } catch (error) {
+        res.send(error)
+    }
 })
 
 
