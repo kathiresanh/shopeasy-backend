@@ -233,7 +233,7 @@ app.post("/createorder",async function(req,res){
 
     
     try {
-        var instance = new Razorpay({
+        var instance = await new Razorpay({
             key_id: process.env.key_id,
             key_secret: process.env.key_secret,
         });
@@ -245,7 +245,7 @@ app.post("/createorder",async function(req,res){
             receipt: "order_rcptid_11"
         };
 
-        instance.orders.create(options, function (err, order) {
+      await  instance.orders.create(options, function (err, order) {
 
             res.send(order)
 
