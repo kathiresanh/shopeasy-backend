@@ -5,9 +5,6 @@ const jwt = require('jsonwebtoken');
 const Razorpay = require("razorpay");
 var CryptoJS = require("crypto-js");
 var app = express()
-// let options = {
-//     origin:"*"
-// }
 
 
 const secret = "abcfghk79685";
