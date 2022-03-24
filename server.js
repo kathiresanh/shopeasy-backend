@@ -9,13 +9,15 @@ let options = {
     origin:"*"
 }
 
-app.use(cors(options))
+
 const secret = "abcfghk79685";
 app.use(express.json())
 const mongodb = require('mongodb');
 const mongoClient = mongodb.MongoClient;
 require('dotenv').config({ path: './secure.env' })
 const URL = process.env.URL;
+
+app.use(cors(options))
 
 
 let authenticate = function(req,res,next){
