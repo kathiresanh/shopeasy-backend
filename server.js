@@ -5,7 +5,11 @@ const jwt = require('jsonwebtoken');
 const Razorpay = require("razorpay");
 var CryptoJS = require("crypto-js");
 var app = express()
-app.use(cors())
+let options = {
+    origin:"*"
+}
+
+app.use(cors(options))
 const secret = "abcfghk79685";
 app.use(express.json())
 const mongodb = require('mongodb');
@@ -329,6 +333,5 @@ app.post("/api/payment/verify",(req,res)=>{
 
 
 
-app.listen(process.env.PORT || 3001, () => {
-    console.log("server listening on port 3001")
+app.listen(process.env.PORT || 3001)
 })
