@@ -248,6 +248,8 @@ app.post("/createorder",async function(req,res){
       await  instance.orders.create(options, function (err, order) {
 
             res.send(order)
+            console.log(err)
+            console.log(order)
 
         });
     } catch (error) {
