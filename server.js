@@ -238,7 +238,7 @@ app.post("/createorder",async function(req,res){
             key_secret: process.env.key_secret,
         });
 
-
+               console.log(process.env.key_secret)
         var options = {
             amount: parseInt(req.body.price) * 100,  // amount in the smallest currency unit
             currency: "INR",
