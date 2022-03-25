@@ -234,11 +234,11 @@ app.post("/createorder",async function(req,res){
     
     try {
         var instance = await new Razorpay({
-            key_id: process.env.key_id,
-            key_secret: process.env.key_secret,
+            key_id: process.env.key,
+            key_secret: process.env.secret,
         });
 
-               console.log(process.env.key_secret)
+              
         var options = {
             amount: parseInt(req.body.price) * 100,  // amount in the smallest currency unit
             currency: "INR",
