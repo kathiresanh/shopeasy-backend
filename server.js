@@ -162,6 +162,22 @@ app.put("/forgot-password",async function(req,res){
 })
 
 
+// api for update adding items to the cart
+
+app.put("/updatecart/:email", async function (req, res) {
+   
+    try {
+        let connection = await mongoClient.connect(URL);
+        let db = connection.db("shopeasy");
+        let user = await db.collection("users").findOneAndUpdate({ email: req.params.email }, {  $set: { cart : req.body } })
+        connection.close()
+        res.send("cart updated")
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
 // api for adding items to the cart
 
 app.put("/addtocart/:email",async function(req,res){
@@ -172,6 +188,22 @@ app.put("/addtocart/:email",async function(req,res){
         let user = await db.collection("users").findOneAndUpdate({email:req.params.email},{ $push: { cart : req.body} })
         connection.close()
         res.send("added to cart")
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
+
+// update user data every time on changes
+
+app.get("/getuserdata/update/:email", async function (req, res) {
+    try {
+        let connection = await mongoClient.connect(URL);
+        let db = connection.db("shopeasy");
+        let user = await db.collection("users").findOne({ email: req.params.email })
+        connection.close()
+        res.send(user)
     } catch (error) {
         console.log(error)
     }
